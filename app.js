@@ -13,7 +13,8 @@ mongoose.Promise = global.Promise;
 const general = require('./routes/general');
 const id = require('./routes/id');
 
-mongoose.connect('mongodb://Dan:password@ds221258.mlab.com:21258/rest_blog');//mongodb://localhost/api
+const mongoDB = process.env.MONGODB_URI  || 'mongodb://Dan:password@ds221258.mlab.com:21258/rest_blog';
+mongoose.connect(mongoDB);//mongodb://localhost/api
 let app = express();
 
 //set up pug
