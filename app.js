@@ -7,14 +7,16 @@ const morgan = require('morgan');
 const compression = require('compression');
 const helmet = require('helmet');
 const path = require('path');
-mongoose.Promise = global.Promise;
 
+const port = process.env.PORT || 3000;
 //get routers
 const general = require('./routes/general');
 const id = require('./routes/id');
 
 const mongoDB = process.env.MONGODB_URI  || 'mongodb://Dan:password@ds221258.mlab.com:21258/rest_blog';
 mongoose.connect(mongoDB);//mongodb://localhost/api
+mongoose.Promise = global.Promise;
+
 let app = express();
 
 //set up pug
@@ -35,7 +37,6 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use('/accounts', general);
 app.use('/accounts/:id', id);
 
-
-
 app.use(errorHandler());
-app.listen(3000);
+
+app.listen(port);
