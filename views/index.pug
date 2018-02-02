@@ -1,0 +1,44 @@
+extends layout
+
+
+block content
+  script.
+    function create(){
+      var name = document.getElementById('name').value;
+      var balance = document.getElementById('balance').value;
+      var data = {
+        name: name,
+        balance: balance
+      };
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST","/accounts",true);
+      xhttp.setRequestHeader("Content-type","application/json");
+      xhttp.send(JSON.stringify(data));
+    }
+  style.
+    .account{
+      margin:auto;
+      background-color:tan;
+      text-align:left;
+      margin-bottom:10px;
+    }
+    .accounts{
+      margin: auto;
+      width: 50%;
+      padding: 30px;
+      background-color:gray;
+      text-align:center;
+    }
+  .accounts
+    h1 Accounts
+    - for (var i = 0; i < accounts.length; i++)
+      p.account.
+        #[strong name]: #{accounts[i].name}#[br]
+        #[strong balance]: #{accounts[i].balance}#[br]
+        #[strong id]: #{accounts[i]._id}#[br]
+    form(action = '' method = 'GET')
+      h1 Create Account
+      input(type = 'text' required name = 'name' placeholder = 'name' id = 'name' value = '')
+      input(type = 'text' required name = 'balance' placeholder = 'balance' id = 'balance' value = '')
+      input(type ='submit' value = 'Submit' onclick = 'create()')
+  
