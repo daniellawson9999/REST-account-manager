@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 const general = require('./routes/general');
 const id = require('./routes/id');
 
-const mongoDB = process.env.MONGODB_URI  || 'mongodb://Dan:password@ds221258.mlab.com:21258/rest_blog';
+const mongoDB =  'mongodb://Dan:password@ds221258.mlab.com:21258/rest_blog';//process.env.MONGODB_URI  ||
 mongoose.connect(mongoDB);//mongodb://localhost/api
 mongoose.Promise = global.Promise;
 
