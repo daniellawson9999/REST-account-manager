@@ -28,8 +28,8 @@ app.set('view engine', 'pug');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 //app.use(morgan('dev'));
 app.use(bodyParser.json());
-//app.use(compression());
-//app.use(helmet());
+app.use(compression());
+app.use(helmet());
 app.use(express.static(path.join(__dirname,'public')));
 
 
@@ -37,6 +37,6 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use('/accounts', general);
 app.use('/accounts/:id', id);
 
-//app.use(errorHandler());
+app.use(errorHandler());
 
 app.listen(port);
