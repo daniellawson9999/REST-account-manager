@@ -10,6 +10,7 @@ const path = require('path');
 
 const port = process.env.PORT || 3000;
 //get routers
+const redirect = require('./routes/redirect');
 const general = require('./routes/general');
 const id = require('./routes/id');
 
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname,'public')));
 
 
 //set routes using middleware, general and id are routers
+app.use('/', redirect);
 app.use('/accounts', general);
 app.use('/accounts/:id', id);
 
